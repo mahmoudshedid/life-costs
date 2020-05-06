@@ -1,128 +1,46 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
-import {
-    Chart,
-    ArgumentAxis,
-    ValueAxis,
-    LineSeries,
-    Title,
-    Legend,
-} from '@devexpress/dx-react-chart-material-ui';
-import { withStyles } from '@material-ui/core/styles';
-import { Animation } from '@devexpress/dx-react-chart';
-
-import { confidence as data } from './data-demo';
-
-const format = () => tick => tick;
-const legendStyles = () => ({
-    root: {
-        display: 'flex',
-        margin: 'auto',
-        flexDirection: 'row',
-    },
-});
-const legendLabelStyles = theme => ({
-    label: {
-        paddingTop: theme.spacing(1),
-        whiteSpace: 'nowrap',
-    },
-});
-const legendItemStyles = () => ({
-    item: {
-        flexDirection: 'column',
-    },
-});
-
-const legendRootBase = ({ classes, ...restProps }) => (
-    <Legend.Root {...restProps} className={classes.root} />
-);
-const legendLabelBase = ({ classes, ...restProps }) => (
-    <Legend.Label className={classes.label} {...restProps} />
-);
-const legendItemBase = ({ classes, ...restProps }) => (
-    <Legend.Item className={classes.item} {...restProps} />
-);
-const Root = withStyles(legendStyles, { name: 'LegendRoot' })(legendRootBase);
-const Label = withStyles(legendLabelStyles, { name: 'LegendLabel' })(legendLabelBase);
-const Item = withStyles(legendItemStyles, { name: 'LegendItem' })(legendItemBase);
-const demoStyles = () => ({
-    chart: {
-        paddingRight: '20px',
-    },
-    title: {
-        whiteSpace: 'pre',
-    },
-});
-
-const ValueLabel = (props) => {
-    const { text } = props;
-    return (
-        <ValueAxis.Label
-            {...props}
-            text={`${text}PLN`}
-        />
-    );
-};
-
-const titleStyles = {
-    title: {
-        whiteSpace: 'pre',
-    },
-};
-const TitleText = withStyles(titleStyles)(({ classes, ...props }) => (
-    <Title.Text {...props} className={classes.title} />
-));
+import { Chart } from "react-google-charts";
 
 class Statistic extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data,
-        };
-    }
 
     render() {
-        const { data: chartData } = this.state;
-        const { classes } = this.props;
 
         return (
-            <Paper>
-                <Chart
-                    data={chartData}
-                    className={classes.chart}
-                >
-                    <ArgumentAxis tickFormat={format} />
-                    <ValueAxis
-                        max={100}
-                        labelComponent={ValueLabel}
-                    />
-
-                    <LineSeries
-                        name="Electronic"
-                        valueField="Electronic"
-                        argumentField="month"
-                    />
-                    <LineSeries
-                        name="Grocery"
-                        valueField="Grocery"
-                        argumentField="month"
-                    />
-                    <LineSeries
-                        name="Mobiles"
-                        valueField="Mobiles"
-                        argumentField="month"
-                    />
-                    <Legend position="bottom" rootComponent={Root} itemComponent={Item} labelComponent={Label} />
-                    <Title
-                        text={`Your expensive costs through 2020`}
-                        textComponent={TitleText}
-                    />
-                    <Animation />
-                </Chart>
-            </Paper>
+            <Chart
+                width={'700px'}
+                height={'400px'}
+                chartType="Line"
+                loader={<div>Loading Chart</div>}
+                data={[
+                    [
+                        'Month',
+                        'Electronic',
+                        'Grocery',
+                        'Mobiles',
+                    ],
+                    ['Jan', 37.8, 80.8, 41.8],
+                    ['Feb', 30.9, 69.5, 32.4],
+                    ['Mar', 25.4, 57, 25.7],
+                    ['Apr', 11.7, 18.8, 10.5],
+                    ['May', 11.9, 17.6, 10.4],
+                    ['Jun', 8.8, 13.6, 7.7],
+                    ['Jul', 7.6, 12.3, 9.6],
+                    ['Aug', 12.3, 29.2, 10.6],
+                    ['Sep', 16.9, 42.9, 14.8],
+                    ['Oct', 12.8, 30.9, 11.6],
+                    ['Nov', 5.3, 7.9, 4.7],
+                    ['Dec', 6.6, 8.4, 5.2],
+                ]}
+                options={{
+                    chart: {
+                        title: 'Your costs expensive through 2020.',
+                        subtitle: 'in thousand of złoto (PLN)',
+                    },
+                }}
+                rootProps={{ 'data-testid': '3' }}
+            />
         );
     }
 }
 
-export default withStyles(demoStyles, { name: 'Statistic' })(Statistic);
+export default (Statistic);
