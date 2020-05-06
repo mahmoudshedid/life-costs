@@ -49,7 +49,7 @@ const NavBar = () => {
                 </AppBar>
             </div>
 
-            <div>
+            <div class="container">
                 <Switch>
                     <Route path="/dashboard">
                         <Dashboard />
