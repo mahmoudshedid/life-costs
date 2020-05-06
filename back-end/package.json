@@ -1,0 +1,20 @@
+{
+  "name": "life-costs",
+  "version": "1.0.0",
+  "description": "Life costs back end.",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "life",
+    "costs",
+    "expensive"
+  ],
+  "author": "Mahmoud Elsokary",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.12"
+  }
+}
