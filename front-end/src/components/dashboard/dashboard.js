@@ -1,7 +1,36 @@
 import * as React from 'react';
 import { Chart } from "react-google-charts";
+import CostDataService from '../../service/costs.service';
 
 class Statistic extends React.PureComponent {
+    _isMounted = false;
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            statistic: [],
+        };
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+        CostDataService.statistics()
+            .then(response => {
+                if (this._isMounted) {
+                    this.setState({
+                        statistic: response.data
+                    });
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     render() {
 

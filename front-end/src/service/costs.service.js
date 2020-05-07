@@ -20,6 +20,10 @@ class CostDataService {
     delete(id) {
         return http.delete(`/costs/${id}`);
     }
+
+    statistics() {
+        return http.get(`/costs/statistics`);
+    }
 }
 
 export default new CostDataService();
