@@ -1,7 +1,9 @@
+const dotenv = require('dotenv');
+dotenv.config();
 module.exports = {
-    "port": 3600,
-    "appEndpoint": "http://localhost:3600",
-    "apiEndpoint": "http://localhost:3600",
-    "databaseConnection": "localhost:27017/life_costs",
-    "environment": "dev"
+    "port": process.env.PORT,
+    "appEndpoint": process.env.APP_END_POINT,
+    "apiEndpoint": process.env.API_END_POINT,
+    "databaseConnection": process.env.DATABASE_CONNECTION,
+    "environment": process.env.ENVIRONMENT
 };

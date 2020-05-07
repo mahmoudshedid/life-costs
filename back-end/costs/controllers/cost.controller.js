@@ -30,10 +30,7 @@ exports.getById = (req, res) => {
 };
 
 exports.statistic = (req, res) => {
-    CostModel.statistic()
-        .then((result) => {
-            res.status(200).send(result);
-        });
+    // return statistic
 };
 
 exports.patchById = (req, res) => {
