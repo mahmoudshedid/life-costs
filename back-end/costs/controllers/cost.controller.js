@@ -28,6 +28,14 @@ exports.getById = (req, res) => {
             res.status(200).send(result);
         });
 };
+
+exports.statistic = (req, res) => {
+    CostModel.statistic()
+        .then((result) => {
+            res.status(200).send(result);
+        });
+};
+
 exports.patchById = (req, res) => {
     CostModel.patchCost(req.params.costId, req.body)
         .then((result) => {

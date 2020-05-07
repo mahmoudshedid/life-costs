@@ -74,3 +74,7 @@ exports.removeById = (costId) => {
         });
     });
 };
+
+exports.statistic = () => {
+    // return statistic;
+}
