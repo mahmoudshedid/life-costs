@@ -43,19 +43,18 @@ const NavBar = () => {
                         </Typography>
                         <Typography color="inherit">
                             <Link to="/dashboard" className={classes.link}><MenuButton>Dashboard</MenuButton></Link>
-                            <Link to="/costs" className={classes.link}><MenuButton>Costs</MenuButton></Link>
+                            <Link to={"/costs"} className={classes.link}><MenuButton>Costs</MenuButton></Link>
                         </Typography>
                     </Toolbar>
                 </AppBar>
             </div>
 
-            <div class="container">
+            <div className="container">
                 <Switch>
                     <Route path="/dashboard">
                         <Dashboard />
                     </Route>
-                    <Route path="/costs">
-                        <Costs />
+                    <Route exact path="/costs" component={Costs} >
                     </Route>
                     <Redirect from="/**" to="/dashboard" />
                 </Switch>
